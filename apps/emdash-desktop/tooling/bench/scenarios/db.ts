@@ -1,3 +1,4 @@
+import { eq } from 'drizzle-orm';
 // Sustained persistence load: N writers (think: N live agent conversations)
 // appending message rows with a read mixed in every 10 ops. better-sqlite3 is
 // synchronous on one connection, so "concurrency" here means interleaved async
@@ -6,9 +7,8 @@
 import { db, sqlite } from '@main/db/client';
 import { initializeDatabase } from '@main/db/initialize';
 import { conversations, messages, projects, tasks as tasksTable } from '@main/db/schema';
-import { eq } from 'drizzle-orm';
-import { currentProfile } from '../profiles';
 import { emitResult, fmtSummary, nowMs, summarize, timed } from '../lib/metrics';
+import { currentProfile } from '../profiles';
 
 const PROJECT_ID = 'bench-project';
 
