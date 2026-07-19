@@ -4,10 +4,10 @@
 // queue, so per-op latency includes queue wait — the wall-clock throughput is
 // the number that matters at concurrency.
 import { execFileSync } from 'node:child_process';
-import { currentProfile } from '../profiles';
 import { emitResult, fmtSummary, nowMs, runPool, summarize, timed } from '../lib/metrics';
 import { makeTempProject } from '../lib/repo';
 import { makeBenchWorktreeService } from '../lib/worktree';
+import { currentProfile } from '../profiles';
 
 async function main(): Promise<void> {
   const { name: profile, cfg } = currentProfile();
