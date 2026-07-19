@@ -15,10 +15,10 @@ import Database from 'better-sqlite3';
 import { db } from '@main/db/client';
 import { initializeDatabase } from '@main/db/initialize';
 import { conversations, projects, tasks as tasksTable } from '@main/db/schema';
-import { currentProfile } from '../profiles';
 import { emitResult, fmtSummary, nowMs, summarize } from '../lib/metrics';
 import { makeTempProject } from '../lib/repo';
 import { makeBenchWorktreeService } from '../lib/worktree';
+import { currentProfile } from '../profiles';
 
 const PROJECT_ID = 'bench-project';
 const appDir = process.cwd();
