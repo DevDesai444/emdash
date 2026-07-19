@@ -6,8 +6,8 @@
 // this is not a max-throughput test.
 import * as path from 'node:path';
 import { spawnLocalPty } from '@main/core/pty/local-pty';
-import { currentProfile } from '../profiles';
 import { emitResult, fmtSummary, nowMs, summarize } from '../lib/metrics';
+import { currentProfile } from '../profiles';
 
 interface SessionStat {
   tag: string;
@@ -50,7 +50,17 @@ async function main(): Promise<void> {
     const pty = spawnLocalPty({
       id: `bench-${tag}`,
       command: process.execPath,
-      args: [mock, '--lines', String(lines), '--rate', String(lineRate), '--bytes', String(lineBytes), '--tag', tag],
+      args: [
+        mock,
+        '--lines',
+        String(lines),
+        '--rate',
+        String(lineRate),
+        '--bytes',
+        String(lineBytes),
+        '--tag',
+        tag,
+      ],
       cwd: process.cwd(),
       env: { ...(process.env as Record<string, string>), ELECTRON_RUN_AS_NODE: '1' },
       cols: 120,
